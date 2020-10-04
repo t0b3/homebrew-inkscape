@@ -7,20 +7,8 @@ class Inkscape < Formula
   revision 1
 
   head do
-    url "https://gitlab.com/inkscape/inkscape.git", :using => :git
-    url "https://gitlab.com/inkscape/inkscape.git", :using => :git, :branch => "0.92.x" if build.include? "branch-0.92"
+    url "https://gitlab.com/inkscape/inkscape.git", :using => :git, :branch => "0.92.x"
   end
-
-  stable do
-    patch do
-      url "https://gitlab.com/inkscape/inkscape/commit/93ccf03162cd2e46d962822d5507865f3451168c.diff"
-      sha256 "1f037cc29cee8e0c60ab4753d4151741c8170e4849129bac68fdc60925eb971d"
-    end
-  end
-
-  option "branch-0.92", "When used with --HEAD, build from the 0.92.x branch"
-
-  option "with-gtk3", "Build Inkscape with GTK+3 (Experimental)"
 
   depends_on "automake" => :build
   depends_on "cmake" => :build
@@ -42,9 +30,7 @@ class Inkscape < Formula
   depends_on "poppler"
   depends_on "potrace"
 
-  depends_on "gtkmm3" if build.with? "gtk3"
-  depends_on "gdl" if build.with? "gtk3"
-  depends_on "gtkmm" if build.without? "gtk3"
+  depends_on "gtkmm"
 
   needs :cxx11
 
