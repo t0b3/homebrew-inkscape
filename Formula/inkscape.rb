@@ -32,8 +32,6 @@ class Inkscape < Formula
 
   depends_on "gtkmm"
 
-  needs :cxx11
-
   if MacOS.version < :mavericks
     fails_with :clang do
       cause "inkscape's dependencies will be built with libstdc++ and fail to link."
@@ -41,7 +39,6 @@ class Inkscape < Formula
   end
 
   def install
-    ENV.cxx11
     ENV.append "LDFLAGS", "-liconv"
 
     system "mkdir", "build"
