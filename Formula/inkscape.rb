@@ -44,8 +44,10 @@ class Inkscape < Formula
     system "mkdir", "build"
     Dir.chdir("build")
     system "cmake", "..", *std_cmake_args
-    system "make"
-    system "make", "install"
+    system "make", "--debug=j", "V=1"
+    #system "make", "--debug=j", "SHELL='/bin/bash -x'", "V=1"
+    system "make", "install", "--debug=j", "V=1"
+    #system "make", "install", "--debug=j", "SHELL='/bin/bash -x'", "V=1"
   end
 
   test do
